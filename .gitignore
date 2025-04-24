@@ -1,0 +1,8 @@
+**/node_modules/
+**/target/
+**/build/
+**/.env
+**/*.log
+**/venv/
+**/.idea/
+**/docker-data/
