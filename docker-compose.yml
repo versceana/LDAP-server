@@ -1,0 +1,42 @@
+services:
+  lldap:
+    image: lldap/lldap:latest
+    container_name: lldap
+    restart: unless-stopped
+    ports:
+      - "389:3890"
+      - "636:6360"
+      - "17170:17170"
+    volumes:
+      - ./data:/data
+      - ./bootstrap:/bootstrap:ro
+      - ./tls/tls.crt:/tls/tls.crt:ro 
+      - ./tls/tls.key:/tls/tls.key:ro
+    env_file:
+      - ./.env
+    networks:
+      - my-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    command: >
+      start-dev
+      --hostname-strict=false
+      --https-port=8443
+      --https-certificate-file=/etc/x509/https/tls.crt
+      --https-certificate-key-file=/etc/x509/https/tls.key
+    ports:
+      - "8443:8443"
+    env_file:
+      - ./.env
+    volumes:
+      - ./tls/:/etc/x509/https:ro
+    depends_on:
+      - lldap
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

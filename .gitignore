@@ -1,8 +1,5 @@
-**/node_modules/
-**/target/
-**/build/
-**/.env
-**/*.log
-**/venv/
-**/.idea/
-**/docker-data/
+.env
+**/ssl/
+lldap_data/
+__pycache__/
+*.pyc

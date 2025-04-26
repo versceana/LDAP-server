@@ -1,0 +1,6 @@
+{
+    "username": "charlie",
+    "password": "Passw0rd3",
+    "email": "charlie@example.com",
+    "groups": ["users"]
+  }
