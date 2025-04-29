@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  openldap:
+    image: bitnami/openldap:latest
+    container_name: openldap
+    environment:
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_USERS=user1,user2,user3,user4,user5
+      - LDAP_PASSWORDS=pass1,pass2,pass3,pass4,pass5
+      - LDAP_ROOT=dc=example,dc=org
+    networks:
+      - my-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    command: start-dev
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=adminpassword
+    ports:
+      - "8080:8080"
+    depends_on:
+      - openldap
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
