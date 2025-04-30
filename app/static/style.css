@@ -28,7 +28,15 @@ body {
   cursor: pointer;
 }
 
+.button_login:hover {
+  color: rgba(255, 255, 255, 0.509)
+}
+
 a {
   color: white;
   margin-top: 10px;
+}
+
+a:hover {
+  color: rgba(255, 255, 255, 0.509)
 }
