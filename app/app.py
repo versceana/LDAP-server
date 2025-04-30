@@ -81,7 +81,7 @@ def auth():
 def protected():
     if 'user' not in session:
         return "<h1>401 Unauthorized</h1><p>You must log in to access this page.</p>", 401
-    return "<h1>Welcome to the protected page!</h1>"
+    return render_template('protected.html')
 
 # Страница для администраторов
 @app.route("/admin")
