@@ -1,20 +1,32 @@
 version: '3.8'
 
 services:
-  openldap:
-    image: bitnami/openldap:latest
-    container_name: openldap
+  lldap:
+    image: lldap/lldap:latest
+    container_name: lldap
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+      - ./bootstrap:/bootstrap:ro
+      - ./tls/tls.crt:/tls/tls.crt:ro
+      - ./tls/tls.key:/tls/tls.key:ro
     environment:
-      - LDAP_ADMIN_USERNAME=admin
-      - LDAP_ADMIN_PASSWORD=adminpassword
-      - LDAP_USERS=user01,user02,user03,user04,user05
-      - LDAP_PASSWORDS=pass1,pass2,pass3,pass4,pass5
-      - LDAP_ROOT=dc=example,dc=org
-      - LDAP_LOGLEVEL=256
+      - LLDAP_LDAP_BASE_DN=dc=example,dc=com
+      - LLDAP_LDAP_USER_DN=cn=admin,ou=people,dc=example,dc=com
+      - LLDAP_LDAP_USER_PASS=AdminPass123
+      - LLDAP_JWT_SECRET=ReplaceWithYourJWTSecret
+      - LLDAP_KEY_SEED=ReplaceWithYourKeySeed
+
+      - LLDAP_LDAPS_OPTIONS__ENABLED=true
+      - LLDAP_LDAPS_OPTIONS__PORT=636
+      - LLDAP_LDAPS_OPTIONS__CERT_FILE=/tls/tls.crt
+      - LLDAP_LDAPS_OPTIONS__KEY_FILE=/tls/tls.key
     networks:
       - my-network
     ports:
-      - "1389:1389"
+      - "389:3890"
+      - "636:6360"
+      - "17170:17170"
 
   keycloak:
     image: quay.io/keycloak/keycloak:latest

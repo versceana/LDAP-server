@@ -1,0 +1,18 @@
+[
+  {
+    "id":         "user01",
+    "email":      "user01@example.com",
+    "firstName":  "User",
+    "lastName":   "One",
+    "password":   "pass1",
+    "groups":     ["manager"]
+  },
+  {
+    "id":         "user02",
+    "email":      "user02@example.com",
+    "firstName":  "User",
+    "lastName":   "Two",
+    "password":   "pass2",
+    "groups":     ["user"]
+  }
+]
