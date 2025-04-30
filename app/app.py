@@ -87,25 +87,25 @@ def protected():
 @app.route("/admin")
 @role_required("admin")
 def admin():
-    return "<h1>Welcome to the Admin Page!</h1>"
+    return render_template('admin.html')
 
 # Страница для пользователей с ролью user
 @app.route("/user")
 @role_required("user")
 def user_page():
-    return "<h1>Welcome to the User Page!</h1>"
+    return render_template('user.html')
 
 # Страница для пользователей с ролью manager
 @app.route("/manager")
 @role_required("manager")
 def manager_page():
-    return "<h1>Welcome to the Manager Page!</h1>"
+    return render_template('manager.html')
 
 # Страница для пользователей с ролью viewer
 @app.route("/viewer")
 @role_required("viewer")
 def viewer_page():
-    return "<h1>Welcome to the Viewer Page!</h1>"
+    return render_template('viewer.html')
 
 # Выход
 @app.route("/logout", methods=["POST"])
