@@ -47,7 +47,7 @@ def index():
     user = session.get("user")
     if user:
         return render_template_string('''
-            <h1>Welcome, {{ user['name'] }}!</h1>
+            <h1>Welcome, {{ user['preferred_username'] }}!</h1>
             <form action="{{ url_for('logout') }}" method="post">
                 <button type="submit">Logout</button>
             </form>
