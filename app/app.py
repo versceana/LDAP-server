@@ -46,19 +46,9 @@ def role_required(role):
 def index():
     user = session.get("user")
     if user:
-        return render_template_string('''
-            <h1>Welcome, {{ user['preferred_username'] }}!</h1>
-            <form action="{{ url_for('logout') }}" method="post">
-                <button type="submit">Logout</button>
-            </form>
-            <a href="{{ url_for('protected') }}">Go to Protected Page</a><br>
-            <a href="{{ url_for('admin') }}">Go to Admin Page</a><br>
-            <a href="{{ url_for('user_page') }}">Go to User Page</a><br>
-            <a href="{{ url_for('manager_page') }}">Go to Manager Page</a><br>
-            <a href="{{ url_for('viewer_page') }}">Go to Viewer Page</a><br>
-        ''', user=user)
+        return render_template('inde.html', user=user)
     else:
-        return render_template('index_not_logged.html')
+        return render_template('index.html')
 
 # Страница входа
 @app.route("/login", methods=["GET"])
