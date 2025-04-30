@@ -46,7 +46,7 @@ def role_required(role):
 def index():
     user = session.get("user")
     if user:
-        return render_template('inde.html', user=user)
+        return render_template('index.html', user=user)
     else:
         return render_template('index.html')
 
