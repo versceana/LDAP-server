@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, url_for, session, render_template_string
+from flask import Flask, redirect, url_for, session, render_template_string, render_template
 from authlib.integrations.flask_client import OAuth
 from authlib.integrations.base_client.errors import OAuthError
 from dotenv import load_dotenv
@@ -58,12 +58,7 @@ def index():
             <a href="{{ url_for('viewer_page') }}">Go to Viewer Page</a><br>
         ''', user=user)
     else:
-        return render_template_string('''
-            <h1>Hello, you are not logged in.</h1>
-            <form action="{{ url_for('login') }}" method="get">
-                <button type="submit">Login</button>
-            </form>
-        ''')
+        return render_template('index_not_logged.html')
 
 # Страница входа
 @app.route("/login", methods=["GET"])
