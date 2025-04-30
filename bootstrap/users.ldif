@@ -1,0 +1,22 @@
+dn: ou=people,dc=example,dc=com
+objectClass: organizationalUnit
+ou: people
+
+dn: cn=admin,ou=people,dc=example,dc=com
+objectClass: person
+cn: admin
+sn: Admin
+userPassword: {SSHA}5f4dcc3b5aa765d61d8327deb882cf99
+
+dn: uid=user1,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: user1
+cn: User One
+sn: One
+mail: user1@example.com
+userPassword: Password1
+
+dn: cn=admins,ou=people,dc=example,dc=com
+objectClass: groupOfNames
+cn: admins
+member: uid=user1,ou=people,dc=example,dc=com
