@@ -35,6 +35,7 @@ body {
 a {
   color: white;
   margin-top: 10px;
+  text-decoration: none;
 }
 
 a:hover {
