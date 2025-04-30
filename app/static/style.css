@@ -28,7 +28,7 @@ body {
   cursor: pointer;
 }
 
-.link {
+a {
   color: white;
   margin-top: 10px;
 }
