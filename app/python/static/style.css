@@ -29,7 +29,8 @@ body {
 }
 
 .button_login:hover {
-  color: rgba(255, 255, 255, 0.509)
+  color: rgba(255, 255, 255, 0.509);
+  border-color: rgba(255, 255, 255, 0.509);
 }
 
 a {

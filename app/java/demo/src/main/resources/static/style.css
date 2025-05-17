@@ -1,0 +1,106 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-image: linear-gradient(to right, #9043bc, #e36a9a);
+  color: white
+}
+
+.message_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+button {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 800;
+  color: white;
+  background-color: transparent;
+  border: white 2px solid;
+  padding: 5px 20px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  color: rgba(255, 255, 255, 0.509);
+  border-color: rgba(255, 255, 255, 0.509);
+}
+
+a {
+  color: white;
+  margin-top: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+a:hover {
+  color: rgba(255, 255, 255, 0.509)
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputs_wrapper {
+  margin-bottom: 20px;
+}
+
+.labeled_input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.form_label{
+  font-weight: 800;
+}
+
+.form_control {
+  width: 35vw;
+  height: 5vh;
+  color: white;
+  border-color: white;
+  background-color: transparent;
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 12px;
+}
+
+.form_control:focus {
+  outline: white;
+}
+
+.alert {
+  text-shadow: white;
+  font-weight: 600;
+  padding: 5px 20px;
+  margin: 5px;
+  border-radius: 8px;
+}
+
+.alert_danger {
+  color: white;
+  background-color: rgba(215, 0, 22, 0.406);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.alert_success {
+  color: white;
+  background-color: rgba(32, 215, 0, 0.416);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.buttons_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
