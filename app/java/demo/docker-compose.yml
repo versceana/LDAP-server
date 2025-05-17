@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  openldap:
+    image: bitnami/openldap:latest
+    container_name: openldap
+    environment:
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_USERS=user01,user02,user03,user04,user05
+      - LDAP_PASSWORDS=pass1,pass2,pass3,pass4,pass5
+      - LDAP_ROOT=dc=example,dc=org
+      - LDAP_LOGLEVEL=256
+    networks:
+      - my-network
+    ports:
+      - "1389:1389"
+
+  phpldapadmin:
+    image: osixia/phpldapadmin:latest
+    container_name: phpldapadmin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: openldap
+      PHPLDAPADMIN_HTTPS: "false"   # deactivate HTTPS
+    networks:
+      - my-network
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+    depends_on:
+      - openldap
+
+
+networks:
+  my-network:
