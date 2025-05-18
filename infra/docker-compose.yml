@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   openldap:
@@ -15,7 +15,7 @@ services:
     networks:
       - my-network
     ports:
-      - "389:1389"
+      - "1389:1389"
 
   phpldapadmin:
     image: osixia/phpldapadmin:latest
@@ -27,7 +27,7 @@ services:
     networks:
       - my-network
     ports:
-      - "8081:80"
+      - "8091:80"
     restart: unless-stopped
     depends_on:
       - openldap
@@ -40,7 +40,7 @@ services:
     networks:
       - my-network
     ports:
-      - "8080:8080"
+      - "8090:8080"
     depends_on:
       - openldap
 
@@ -53,8 +53,11 @@ services:
       - ../bot/.env
     networks:
       - my-network
-    expose:
-      - "5000"
+    ports:
+      - "5010:5000"
+    depends_on:
+      - openldap
+    restart: unless-stopped
 
   nginx:
     image: nginx:latest
@@ -62,7 +65,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
-      - "80:80"
+      - "90:80"
     depends_on:
       - backend
       - bot
