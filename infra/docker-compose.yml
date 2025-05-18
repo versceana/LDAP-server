@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2f64569 (readme)
 version: "3.8"
 
 services:
@@ -16,7 +19,7 @@ services:
     networks:
       - my-network
     ports:
-      - "389:1389"
+      - "1389:1389"
 
   phpldapadmin:
     image: osixia/phpldapadmin:latest
