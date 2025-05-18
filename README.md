@@ -25,7 +25,7 @@ All components run in Docker containers and are orchestrated using `docker-compo
 
 ---
 
-## 🥪 Features
+## Features
 
 ### Telegram Bot
 
