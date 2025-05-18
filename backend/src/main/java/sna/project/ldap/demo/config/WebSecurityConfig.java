@@ -15,6 +15,9 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers(
+                                "/css/**",
+                                "/js/**",
+                                "/images/**",
                                 "/unsecgreetings",
                                 "/api/auth/register",
                                 "/api/auth/registration",

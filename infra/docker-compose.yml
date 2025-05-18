@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   openldap:
@@ -7,6 +7,7 @@ services:
     environment:
       - LDAP_ADMIN_USERNAME=admin
       - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_USERS_OU=users
       - LDAP_USERS=user01,user02,user03,user04,user05
       - LDAP_PASSWORDS=pass1,pass2,pass3,pass4,pass5
       - LDAP_ROOT=dc=example,dc=org
@@ -14,7 +15,7 @@ services:
     networks:
       - my-network
     ports:
-      - "1389:1389"
+      - "389:1389"
 
   phpldapadmin:
     image: osixia/phpldapadmin:latest
@@ -22,6 +23,7 @@ services:
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: openldap
       PHPLDAPADMIN_HTTPS: "false"
+      PHPLDAPADMIN_LDAP_LOGIN_DN: cn=admin,dc=example,dc=org
     networks:
       - my-network
     ports:
@@ -37,18 +39,25 @@ services:
     container_name: chatops-backend
     networks:
       - my-network
-    expose:
-      - "8080"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - openldap
 
   bot:
     build:
       context: ../bot
       dockerfile: Dockerfile
     container_name: chatops-bot
+    env_file:
+      - ../bot/.env
     networks:
       - my-network
-    expose:
-      - "5000"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - openldap
+    restart: unless-stopped
 
   nginx:
     image: nginx:latest
