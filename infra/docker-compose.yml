@@ -21,7 +21,7 @@ services:
     container_name: phpldapadmin
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: openldap
-      PHPLDAPADMIN_HTTPS: "false"   # deactivate HTTPS
+      PHPLDAPADMIN_HTTPS: "false"
     networks:
       - my-network
     ports:
@@ -30,6 +30,38 @@ services:
     depends_on:
       - openldap
 
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: chatops-backend
+    networks:
+      - my-network
+    expose:
+      - "8080"
+
+  bot:
+    build:
+      context: ../bot
+      dockerfile: Dockerfile
+    container_name: chatops-bot
+    networks:
+      - my-network
+    expose:
+      - "5000"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - bot
+    networks:
+      - my-network
 
 networks:
   my-network:
