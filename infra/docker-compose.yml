@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   openldap:
@@ -53,11 +53,8 @@ services:
       - ../bot/.env
     networks:
       - my-network
-    ports:
-      - "5000:5000"
-    depends_on:
-      - openldap
-    restart: unless-stopped
+    expose:
+      - "5000"
 
   nginx:
     image: nginx:latest
