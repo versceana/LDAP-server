@@ -14,12 +14,17 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
+                        // Разрешаем доступ к статическим ресурсам и публичным endpoint'ам
                         .requestMatchers(
+                                "/css/**",
+                                "/js/**",
+                                "/images/**",
                                 "/unsecgreetings",
                                 "/api/auth/register",
                                 "/api/auth/registration",
                                 "/login"
                         ).permitAll()
+                        // Все остальные запросы требуют аутентификации
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
