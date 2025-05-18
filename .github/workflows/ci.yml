@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 2f64569 (readme)
 name: Deploy buy runner
 
 on:
   push:
-<<<<<<< HEAD
     branches: [ "main", "dev-sna" ]
-=======
-    branches: [ "main" ]
->>>>>>> 2f64569 (readme)
 
 jobs:
   # test:

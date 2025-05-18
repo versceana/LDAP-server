@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 2f64569 (readme)
 version: "3.8"
 
 services:
